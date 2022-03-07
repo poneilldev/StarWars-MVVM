@@ -1,0 +1,28 @@
+{
+  "configurations" : [
+    {
+      "id" : "36A8A701-EAFF-4DE2-A404-B44252695DAB",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:StarWars.xcodeproj",
+      "identifier" : "0BE8B23E27B3137F00F28EAE",
+      "name" : "StarWars"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:StarWars.xcodeproj",
+        "identifier" : "0BE8B25427B3138100F28EAE",
+        "name" : "StarWarsTests"
+      }
+    }
+  ],
+  "version" : 1
+}
