@@ -15,6 +15,85 @@ For examples of this see `PersonsViewControllerTests.swift`
 
 
 ## Guidelines
-1. View model should reside in an extension of the view controller it's associated with
-2. Use `@Published` over `PassthroughSubject` or `CurrentValueSubject`
-3. To avoid "dumping" code of all kinds into the view model, we should limit the content of the view model to be: presentation logic and state.
+### View model should reside in an extension of the view controller it's associated with
+```
+extension ExampleViewController {
+  class ViewModel {
+    ...  
+  }
+}
+
+```
+
+### Use `@Published` over `PassthroughSubject` or `CurrentValueSubject`
+ ```
+ class ViewModel {
+   @Published private(set) var results: [PersonProtocol] = []
+   // other variables here
+   
+   ...
+ }
+ ```
+ - We will be using `@Published` which will act as the publisher for communicating with the view controllers and SwiftUI views. The `@Published` properwrapper is class contrained so the view model must be a class.
+ - Since all view model operations are dealing with updating the UI, it is reasonable to have all of our view models be marked with @MainActor. This ensures all attributes and methods called are done so on the main thread.
+ - To keep the integrity of the variables in the view model, it is good practice to set them at `private(set)` so that the variables are only able to be set inside the view model. If there is a need to update the values from the view then just create a method with to handle that update and handle all the validation there to safely update the variables.
+
+
+### We should limit the content of the view model to be: 1) presentation logic and 2) state.
+
+**State**
+
+Generally speaking, there should be no need for the view controller or SwiftUI view to hold variable related to state.
+
+**Presentation Logic**
+
+All presentation logic should reside in the view model. The following are some examples of presentation logic:
+1. Calculating data source values of a UITableView/UICollectionView
+```
+func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return self.viewModel.getNumPersons()
+}
+    
+func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: PersonTableViewCell.identifier, for: indexPath) as! PersonTableViewCell
+    cell.configureCell(self.viewModel.getPerson(for: indexPath))
+    return cell
+}
+```
+2. Deciding when the UI should be updated to a different state 
+
+(Example: telling the UI to show a loading indicator)
+```
+class ViewModel {
+  ...
+
+  func loadAllPersons() async throws {
+        self.loading = true
+        do {
+            let persons = try await service.getAllPersons()
+            self.results = persons
+            self.filteredResults = persons
+        } catch let error {
+            self.error = error
+        }
+        self.loading = false
+  }
+}
+
+```
+3. Logic to decide what text should be displayed based on certain conditions
+
+```
+class ViewModel {
+  ...
+
+  func calculateTitleText() -> String {
+      if Date().isWeekDay {
+        return NSLocalizedString("Week")
+      } else {
+        return NSLocalizedString("Weekend")
+      }
+  }
+}
+```
+
