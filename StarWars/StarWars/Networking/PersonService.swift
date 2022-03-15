@@ -13,14 +13,15 @@ protocol PersonServiceProtocol {
 }
 
 struct PersonService: PersonServiceProtocol {
+    static private let basePath = "https://poneilldev.github.io/starwars-api/"
     
     func getPerson(for personId: Int) async throws -> PersonProtocol {
-        let url = URL(string: "https://poneilldev.github.io/starwars-api/id/\(personId).json")!
+        let url = URL(string: Self.basePath + "id/\(personId).json")!
         return try await NetworkingManager.loadResource(type: Person.self, with: url)
     }
     
     func getAllPersons() async throws -> [PersonProtocol] {
-        let url = URL(string: "https://poneilldev.github.io/starwars-api/all.json")!
+        let url = URL(string: Self.basePath + "all.json")!
         return try await NetworkingManager.loadResource(type: [Person].self, with: url)
     }
     
