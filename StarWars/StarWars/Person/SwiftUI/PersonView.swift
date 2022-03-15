@@ -18,7 +18,9 @@ struct PersonView: View {
                 } else {
                     List {
                         ForEach(viewModel.filteredResults, id: \.name) { person in
-                            PersonViewCell(person: person)
+                            NavigationLink(destination: PersonDetailsView(person: person)) {
+                                PersonViewCell(person: person)
+                            }
                         }
                     }
                     .searchable(text: $viewModel.searchBarText, prompt: "Search name...")

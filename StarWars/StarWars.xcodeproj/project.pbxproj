@@ -39,6 +39,7 @@
 		0BEC098C27CA65EA003E958A /* PersonHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC098B27CA65EA003E958A /* PersonHostViewController.swift */; };
 		0BEC099027CD85E8003E958A /* PersonView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC098F27CD85E8003E958A /* PersonView+ViewModel.swift */; };
 		0BEC099327CD8AC6003E958A /* PersonDetailViewController+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC099227CD8AC6003E958A /* PersonDetailViewController+ViewModel.swift */; };
+		0BEFCA0327E0E1F2007D38EB /* PersonDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEFCA0227E0E1F2007D38EB /* PersonDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		0BEC098B27CA65EA003E958A /* PersonHostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonHostViewController.swift; sourceTree = "<group>"; };
 		0BEC098F27CD85E8003E958A /* PersonView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonView+ViewModel.swift"; sourceTree = "<group>"; };
 		0BEC099227CD8AC6003E958A /* PersonDetailViewController+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonDetailViewController+ViewModel.swift"; sourceTree = "<group>"; };
+		0BEFCA0227E0E1F2007D38EB /* PersonDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,11 +265,28 @@
 		0BEC099127CD8819003E958A /* PersonDetails */ = {
 			isa = PBXGroup;
 			children = (
+				0BEFCA0127E0E1DA007D38EB /* SwiftUI */,
+				0BEFCA0027E0E1D2007D38EB /* UIKit */,
+			);
+			path = PersonDetails;
+			sourceTree = "<group>";
+		};
+		0BEFCA0027E0E1D2007D38EB /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
 				0B1A385A27C5FBAE00AB6F5B /* PersonDetailViewController.swift */,
 				0B1A385C27C5FBCA00AB6F5B /* PersonDetailViewController+MainView.swift */,
 				0BEC099227CD8AC6003E958A /* PersonDetailViewController+ViewModel.swift */,
 			);
-			path = PersonDetails;
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		0BEFCA0127E0E1DA007D38EB /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				0BEFCA0227E0E1F2007D38EB /* PersonDetailsView.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +421,7 @@
 			files = (
 				0B1A385527C5EBBA00AB6F5B /* PlanetService.swift in Sources */,
 				0BE8B28527B3315400F28EAE /* PersonsViewController+ViewModel.swift in Sources */,
+				0BEFCA0327E0E1F2007D38EB /* PersonDetailsView.swift in Sources */,
 				0BE8B24727B3137F00F28EAE /* MainViewController.swift in Sources */,
 				0BEC099027CD85E8003E958A /* PersonView+ViewModel.swift in Sources */,
 				0BE8B28027B330D700F28EAE /* PersonsViewController.swift in Sources */,
